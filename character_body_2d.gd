@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var locating = Vector2(0,0)
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -26,4 +26,4 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
-	print("fries")
+	pass
