@@ -1,43 +1,85 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2dqtmlegppqf"]
+[gd_scene load_steps=11 format=3 uid="uid://b2dqtmlegppqf"]
 
-[ext_resource type="Script" uid="uid://bss4mgihbqfdc" path="res://character_body_2d.gd" id="1_ofs8o"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_pmeba"]
-[ext_resource type="Script" uid="uid://beq7d2f4hlba1" path="res://sprite_2d.gd" id="3_ewuch"]
+[ext_resource type="Script" uid="uid://c88etwqexi3q3" path="res://Node2D.gd" id="1_0433r"]
+[ext_resource type="Texture2D" uid="uid://cae13bhbbh71g" path="res://player.png" id="2_ewuch"]
+[ext_resource type="Script" path="res://Grabber.gd" id="4_0433r"]
 [ext_resource type="Texture2D" uid="uid://dn18xep8w1yam" path="res://blackround.jpg" id="4_pmeba"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0433r"]
-size = Vector2(106.66667, 117.333336)
+[ext_resource type="Script" uid="uid://yohgchsya82g" path="res://Coin.gd" id="5_2bbv8"]
+[ext_resource type="Texture2D" uid="uid://dy4c52gvkj0do" path="res://arrowwhite.png" id="5_ewuch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofs8o"]
-size = Vector2(392.55676, 275.91354)
+size = Vector2(392.55676, 272.03833)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewuch"]
+size = Vector2(9.791864, 21.27871)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bbv8"]
+size = Vector2(1124.9678, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0433r"]
+size = Vector2(78.13455, 75.200874)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-516, -354)
 scale = Vector2(2.5805185, 2.5805185)
+script = ExtResource("1_0433r")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_ofs8o")
+[node name="2DDeathdetection" type="Area2D" parent="."]
+position = Vector2(2, -3)
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(199.1717, 136.00609)
-scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("2_pmeba")
-script = ExtResource("3_ewuch")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DDeathdetection"]
+position = Vector2(197.57227, 139.7942)
+shape = SubResource("RectangleShape2D_ofs8o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(199.1717, 136.00609)
+[node name="Sprite2D" type="Sprite2D" parent="2DDeathdetection"]
+visible = false
+position = Vector2(198.1134, 143.93745)
+scale = Vector2(0.49951562, 0.6205615)
+texture = ExtResource("4_pmeba")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(194.05995, 142.63318)
+
+[node name="Grabber" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(235.61153, 118.580826)
+scale = Vector2(0.63320976, 0.7421994)
+texture = ExtResource("5_ewuch")
+script = ExtResource("4_0433r")
+
+[node name="Area2D" type="Area2D" parent="Grabber"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grabber/Area2D"]
+position = Vector2(-0.5237427, -0.5332031)
+shape = SubResource("RectangleShape2D_ewuch")
+
+[node name="GAMEOVERCOLLISION" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GAMEOVERCOLLISION"]
+position = Vector2(217.59192, 298.38965)
+shape = SubResource("RectangleShape2D_2bbv8")
+
+[node name="Coin" type="CharacterBody2D" parent="."]
+script = ExtResource("5_2bbv8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coin"]
+z_index = 2
+position = Vector2(200.11005, 136.1694)
+scale = Vector2(0.49378777, 0.49378777)
+texture = ExtResource("2_ewuch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+position = Vector2(199.91049, 135.97061)
 scale = Vector2(0.1875, 0.1875)
 shape = SubResource("RectangleShape2D_0433r")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(2, -3)
+[node name="Arrow timer" type="Timer" parent="."]
+wait_time = 0.327
+autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(197.1848, 139.4067)
-shape = SubResource("RectangleShape2D_ofs8o")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(426.59607, 171.18326)
-texture = ExtResource("4_pmeba")
-
-[connection signal="body_exited" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="2DDeathdetection" to="Coin" method="_on_area_2d_body_exited"]
+[connection signal="area_shape_entered" from="Grabber/Area2D" to="Coin" method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Grabber/Area2D" to="Coin" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="GAMEOVERCOLLISION" to="Coin" method="_on_gameovercollision_body_entered"]
+[connection signal="child_entered_tree" from="Coin" to="Grabber" method="_on_player_child_entered_tree"]
+[connection signal="timeout" from="Arrow timer" to="." method="_on_arrow_timer_timeout"]
+[connection signal="timeout" from="Arrow timer" to="Coin" method="_on_arrow_timer_timeout"]
