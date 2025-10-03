@@ -17,3 +17,4 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	Coinplayer.life = Coinplayer.life - 1
 	death()
+	

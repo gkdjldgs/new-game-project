@@ -10,19 +10,23 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+#angling the cursors
+#Spawningthecursors
 var temposition = Vector2(0,0)
 
 func _on_childspawn():
-	print('wow')
+	print(Coinplayer.locating)
 	var temposition = Vector2(temposition.x,temposition.y)
-	temposition.x = int(randi_range(-190,190))
-	temposition.y = int(randi_range(-130,130))
+	temposition.x = int(randi_range(15,350))
+	temposition.y = int(randi_range(25,250))
 	var arrowtemp = arrow.instantiate()
 	arrowtemp.global_position = Vector2(temposition.x, temposition.y)
+	var direction = arrowtemp.position - Coinplayer.locating
+	var angle = direction.angle() 
 	add_child(arrowtemp)
-	print(arrowtemp.position)
+	arrowtemp.rotation = angle
 	await get_tree().create_timer(4.5).timeout
-	print('woahdd')
+
 
 
 func _on_arrow_timer_timeout() -> void:

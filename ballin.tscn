@@ -22,11 +22,14 @@ size = Vector2(78.13455, 75.200874)
 [node name="Node2D" type="Node2D"]
 scale = Vector2(2.5805185, 2.5805185)
 script = ExtResource("1_0433r")
+metadata/_edit_horizontal_guides_ = [-1111.0, -18.0, -344.0, -425.0]
+metadata/_edit_vertical_guides_ = [1008.0]
 
 [node name="2DDeathdetection" type="Area2D" parent="."]
 position = Vector2(2, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DDeathdetection"]
+visible = false
 position = Vector2(197.57227, 139.7942)
 shape = SubResource("RectangleShape2D_ofs8o")
 
@@ -40,8 +43,7 @@ texture = ExtResource("4_pmeba")
 position = Vector2(194.05995, 142.63318)
 
 [node name="Grabber" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(235.61153, 118.580826)
+position = Vector2(368.91815, 25.963776)
 scale = Vector2(0.63320976, 0.7421994)
 texture = ExtResource("5_ewuch")
 script = ExtResource("4_0433r")
@@ -73,8 +75,11 @@ scale = Vector2(0.1875, 0.1875)
 shape = SubResource("RectangleShape2D_0433r")
 
 [node name="Arrow timer" type="Timer" parent="."]
-wait_time = 0.327
+wait_time = 0.466
 autostart = true
+
+[node name="Direction timer" type="Timer" parent="."]
+wait_time = 0.011
 
 [connection signal="body_exited" from="2DDeathdetection" to="Coin" method="_on_area_2d_body_exited"]
 [connection signal="area_shape_entered" from="Grabber/Area2D" to="Coin" method="_on_area_2d_area_shape_entered"]
@@ -83,3 +88,4 @@ autostart = true
 [connection signal="child_entered_tree" from="Coin" to="Grabber" method="_on_player_child_entered_tree"]
 [connection signal="timeout" from="Arrow timer" to="." method="_on_arrow_timer_timeout"]
 [connection signal="timeout" from="Arrow timer" to="Coin" method="_on_arrow_timer_timeout"]
+[connection signal="timeout" from="Direction timer" to="Coin" method="_on_direction_timer_timeout"]

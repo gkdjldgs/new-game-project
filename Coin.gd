@@ -1,11 +1,12 @@
 extends CharacterBody2D
-var locating = Vector2(0,0)
+var locating = self.position
 var life = 3
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var alive = true
+
 #(cursor_enemy)
-@onready var arrow = preload("res://arrow.tscn")
+
 
 #movement
 func _physics_process(delta: float) -> void:
@@ -46,3 +47,7 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 
 func _on_gameovercollision_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
+
+
+func _on_direction_timer_timeout() -> void:
+	locating = self.position # Replace with function body.
