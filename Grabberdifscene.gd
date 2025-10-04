@@ -1,5 +1,5 @@
 extends Node2D
-var why = Coinplayer.locating 
+@onready var why = Coinplayer.locating 
 var balls = Vector2(0,0)
 func death():
 	Coinplayer.death()

@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_player_child_entered_tree(node: Node) -> void:
-	look_at(locating)
+	look_at(Coinplayer.locating)

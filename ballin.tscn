@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c88etwqexi3q3" path="res://Node2D.gd" id="1_0433r"]
 [ext_resource type="Texture2D" uid="uid://cae13bhbbh71g" path="res://player.png" id="2_ewuch"]
-[ext_resource type="Script" path="res://Grabber.gd" id="4_0433r"]
+[ext_resource type="Script" uid="uid://b3klf8t7i8vbw" path="res://Grabber.gd" id="4_0433r"]
 [ext_resource type="Texture2D" uid="uid://dn18xep8w1yam" path="res://blackround.jpg" id="4_pmeba"]
 [ext_resource type="Script" uid="uid://yohgchsya82g" path="res://Coin.gd" id="5_2bbv8"]
 [ext_resource type="Texture2D" uid="uid://dy4c52gvkj0do" path="res://arrowwhite.png" id="5_ewuch"]
@@ -63,7 +63,7 @@ shape = SubResource("RectangleShape2D_2bbv8")
 [node name="Coin" type="CharacterBody2D" parent="."]
 script = ExtResource("5_2bbv8")
 
-[node name="Sprite2D" type="Sprite2D" parent="Coin"]
+[node name="Sprite2Ds" type="Sprite2D" parent="Coin"]
 z_index = 2
 position = Vector2(200.11005, 136.1694)
 scale = Vector2(0.49378777, 0.49378777)
@@ -75,11 +75,11 @@ scale = Vector2(0.1875, 0.1875)
 shape = SubResource("RectangleShape2D_0433r")
 
 [node name="Arrow timer" type="Timer" parent="."]
-wait_time = 0.466
+wait_time = 3.686
 autostart = true
 
 [node name="Direction timer" type="Timer" parent="."]
-wait_time = 0.011
+wait_time = 0.361
 
 [connection signal="body_exited" from="2DDeathdetection" to="Coin" method="_on_area_2d_body_exited"]
 [connection signal="area_shape_entered" from="Grabber/Area2D" to="Coin" method="_on_area_2d_area_shape_entered"]
