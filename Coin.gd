@@ -41,12 +41,6 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	print(position)
 	death()
 
-	
-
-
-func _on_gameovercollision_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
 
 func _on_direction_timer_timeout() -> void:
 	pass #Replace with function body.
