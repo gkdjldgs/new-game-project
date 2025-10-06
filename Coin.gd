@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var score = 0
 var life = 3
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -39,3 +39,4 @@ func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	life = life - 1
 	death()
+	

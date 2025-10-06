@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://sk2hxwq1eh8q"]
+
+[ext_resource type="Texture2D" uid="uid://btt44p1j1dec7" path="res://Goodgoldcoin.png" id="1_h5dih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ou7jl"]
+radius = 54.656456
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8146973e-06, -0.9999962)
+scale = Vector2(0.640625, 0.640625)
+texture = ExtResource("1_h5dih")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_ou7jl")

@@ -5,7 +5,7 @@ extends Node2D
 
 func _on_arrow_timer_timeout() -> void:
 	_on_childspawn()
-#Spawningthecursors
+
 var temposition = Vector2(0,0)
 
 func _on_childspawn():
@@ -18,3 +18,11 @@ func _on_childspawn():
 	await get_tree().create_timer(1.25).timeout
 	_on_arrow_timer_timeout()
 	arrowtemp.queue_free()
+
+
+func _on_bottle_timer_timeout() -> void:
+	pass # Replace with function body.
+
+
+func _on_coin_timer_timeout() -> void:
+	pass # Replace with function body.

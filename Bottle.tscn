@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://j0i6mapvn83b"]
+
+[ext_resource type="Texture2D" uid="uid://ks6htan582w3" path="res://waterbottle.png" id="1_m5308"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_edst3"]
+radius = 27.0
+height = 106.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m5308")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-2, 5)
+shape = SubResource("CapsuleShape2D_edst3")
