@@ -1,19 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://sk2hxwq1eh8q"]
+[gd_scene load_steps=4 format=3 uid="uid://sk2hxwq1eh8q"]
 
 [ext_resource type="Texture2D" uid="uid://btt44p1j1dec7" path="res://Goodgoldcoin.png" id="1_h5dih"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ou7jl"]
-radius = 54.656456
+[sub_resource type="GDScript" id="GDScript_i1sv1"]
+script/source = "extends Node2D
 
-[node name="Node2D" type="Node2D"]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	Coinplayer.score = Coinplayer.score + 1
+	self.queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1sv1"]
+radius = 1707.4307
+
+[node name="Realgoodcoin" type="Node2D"]
+scale = Vector2(0.355, 0.355)
+script = SubResource("GDScript_i1sv1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3.8146973e-06, -0.9999962)
-scale = Vector2(0.640625, 0.640625)
+position = Vector2(0, -5.9604645e-08)
+scale = Vector2(0.355, 0.355)
 texture = ExtResource("1_h5dih")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
+scale = Vector2(0.355, 0.355)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CircleShape2D_ou7jl")
+scale = Vector2(0.355, 0.355)
+shape = SubResource("CircleShape2D_i1sv1")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

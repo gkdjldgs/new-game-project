@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2dqtmlegppqf"]
+[gd_scene load_steps=14 format=3 uid="uid://b2dqtmlegppqf"]
 
 [ext_resource type="Script" uid="uid://c88etwqexi3q3" path="res://Node2D.gd" id="1_0433r"]
 [ext_resource type="Texture2D" uid="uid://ro5oqgcobv32" path="res://background.jpg" id="2_0433r"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b3klf8t7i8vbw" path="res://Grabber.gd" id="4_0433r"]
 [ext_resource type="Script" uid="uid://yohgchsya82g" path="res://Coin.gd" id="5_2bbv8"]
 [ext_resource type="Texture2D" uid="uid://b6cgg1py3npuw" path="res://chestplayer.png" id="6_0433r"]
+[ext_resource type="Texture2D" uid="uid://ks6htan582w3" path="res://waterbottle.png" id="7_2bbv8"]
+[ext_resource type="Texture2D" uid="uid://btt44p1j1dec7" path="res://Goodgoldcoin.png" id="8_pxb1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofs8o"]
 size = Vector2(392.55676, 272.03833)
@@ -16,6 +18,13 @@ size = Vector2(87.83725, 99.08157)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0433r"]
 size = Vector2(78.13455, 75.200874)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxb1d"]
+radius = 32.42912
+height = 93.23362
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxb1d"]
+radius = 46.04828
+
 [node name="Node2D" type="Node2D"]
 scale = Vector2(2.5805185, 2.5805185)
 script = ExtResource("1_0433r")
@@ -23,6 +32,7 @@ metadata/_edit_horizontal_guides_ = [-1111.0, -18.0, -344.0, -425.0]
 metadata/_edit_vertical_guides_ = [1008.0]
 
 [node name="2DDeathdetection" type="Area2D" parent="."]
+visible = false
 position = Vector2(2, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2DDeathdetection"]
@@ -38,8 +48,7 @@ texture = ExtResource("2_0433r")
 position = Vector2(194.05995, 142.63318)
 
 [node name="Garabge2ds" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(366.20547, 28.67641)
+position = Vector2(94.94217, -17.825878)
 scale = Vector2(0.15, 0.176)
 texture = ExtResource("3_0433r")
 script = ExtResource("4_0433r")
@@ -65,17 +74,42 @@ scale = Vector2(0.1875, 0.1875)
 shape = SubResource("RectangleShape2D_0433r")
 
 [node name="Garbage timer" type="Timer" parent="."]
-wait_time = 3.686
+wait_time = 3.5
 autostart = true
+ignore_time_scale = true
 
 [node name="Bottle timer" type="Timer" parent="."]
-wait_time = 0.361
+wait_time = 2.0
+autostart = true
+ignore_time_scale = true
 
 [node name="Coin timer" type="Timer" parent="."]
+wait_time = 1.27
+autostart = true
+ignore_time_scale = true
 
 [node name="Bottle2ds" type="Sprite2D" parent="."]
+position = Vector2(52.538513, -19.15251)
+scale = Vector2(0.19119579, 0.19119579)
+texture = ExtResource("7_2bbv8")
+
+[node name="Area2D" type="Area2D" parent="Bottle2ds"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottle2ds/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottle2ds/Area2D"]
+position = Vector2(-1.1686707, 13.0190735)
+shape = SubResource("CapsuleShape2D_pxb1d")
 
 [node name="Coin2ds" type="Sprite2D" parent="."]
+position = Vector2(20.62055, -14.420248)
+scale = Vector2(0.11376282, 0.11376282)
+texture = ExtResource("8_pxb1d")
+
+[node name="Area2D" type="Area2D" parent="Coin2ds"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2ds/Area2D"]
+shape = SubResource("CircleShape2D_pxb1d")
 
 [connection signal="body_exited" from="2DDeathdetection" to="Coin" method="_on_area_2d_body_exited"]
 [connection signal="area_shape_entered" from="Garabge2ds/Area2D" to="Coin" method="_on_area_2d_area_shape_entered"]

@@ -4,10 +4,15 @@ var life = 3
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var alive = true
-
+var high_score = 0
 var locating = Vector2(0,0)
 @onready var pain = self.global_position
-
+# highscores
+func lead():
+	if score > high_score:
+		high_score = score
+	else:
+		pass
 #movement
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -39,4 +44,3 @@ func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	life = life - 1
 	death()
-	
