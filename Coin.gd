@@ -38,9 +38,4 @@ func _on_area_2d_body_exited(body: CharacterBody2D) -> void:
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	life = life - 1
-	print(position)
 	death()
-
-
-func _on_direction_timer_timeout() -> void:
-	pass #Replace with function body.
